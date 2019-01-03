@@ -24,4 +24,4 @@ function parseRule(match: string, provider: string) {
 	rules.push(metadata);
 }
 
-fs.writeFileSync("rules.json", JSON.stringify(rules));
+fs.writeFileSync("projects/explorer/src/assets/rules.json", JSON.stringify(rules));
