@@ -1,14 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
 import { RuleMetadata } from "projects/datasource/src/rule-metadata";
 import { RuleService } from "../../services/rule.service";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: "app-rules",
 	templateUrl: "rules.component.html",
 })
 export class RulesComponent implements OnInit {
-	public rules$: Observable<Array<RuleMetadata>> | undefined = undefined;
+	public rules$: Observable<RuleMetadata[]>;
 
 	constructor(private ruleService: RuleService) {}
 

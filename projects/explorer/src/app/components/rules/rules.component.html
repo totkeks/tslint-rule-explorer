@@ -1,7 +1,9 @@
-<h2>Rule list ({{ (rules$ | async).length }} rules)</h2>
+<section>
+	<h2>Rule list ({{ (rules$ | async)?.length }} rules)</h2>
 
-<ul>
-	<li *ngFor="let rule of (rules$ | async)">
-		<a routerLink="/rule/{{ rule.ruleName }}">{{ rule.ruleName }}</a>
-	</li>
-</ul>
+	<ul>
+		<li *ngFor="let rule of (rules$ | async)">
+			<a routerLink="/rule/{{ rule.ruleName }}">{{ rule.ruleName }}</a>
+		</li>
+	</ul>
+</section>

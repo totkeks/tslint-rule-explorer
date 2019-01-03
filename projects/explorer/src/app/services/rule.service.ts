@@ -1,20 +1,22 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { RuleMetadata } from "projects/datasource/src/rule-metadata";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { RuleMetadata } from "projects/datasource/src/rule-metadata";
 
 @Injectable({ providedIn: "root" })
 export class RuleService {
-	constructor(private httpClient: HttpClient) {}
+	private rules$: Observable<RuleMetadata[]>;
 
-	public getRules(): Observable<Array<RuleMetadata>> {
-		return this.httpClient.get<Array<RuleMetadata>>("/assets/rules.json");
+	constructor(private httpClient: HttpClient) {
+		this.rules$ = this.httpClient.get<RuleMetadata[]>("/assets/rules.json");
 	}
 
-	public getRule(name: string): Observable<RuleMetadata | undefined> {
-		return this.httpClient
-			.get<Array<RuleMetadata>>("/assets/rules.json")
-			.pipe(map(rules => rules.find(rule => rule.ruleName === name)));
+	public getRules(): Observable<RuleMetadata[]> {
+		return this.rules$;
+	}
+
+	public getRule(name: string): Observable<RuleMetadata> {
+		return this.rules$.pipe(map(rules => rules.find(rule => rule.ruleName === name)));
 	}
 }
