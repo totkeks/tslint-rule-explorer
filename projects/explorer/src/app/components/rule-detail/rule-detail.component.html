@@ -1,0 +1,19 @@
+<section *ngIf="rule" class="rule">
+	<header>
+		<h2 class="rule__name">{{ rule.ruleName }}</h2>
+		<p>
+			<span>{{ rule.hasFix }}</span> <span>{{ rule.typescriptOnly }}</span>
+			<span>{{ rule.type }}</span> <span>{{ rule.provider }}</span>
+		</p>
+	</header>
+
+	<p><strong>Description:</strong> {{ rule.description }}</p>
+
+	<p><strong>Rationale:</strong> {{ rule.rationale }}</p>
+
+	<p>{{ rule.optionsDescription }}</p>
+	<p>{{ rule.options }}</p>
+	<p>{{ rule.optionExamples }}</p>
+
+	<footer><button (click)="goBack()">Go back</button></footer>
+</section>

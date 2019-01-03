@@ -1,0 +1,7 @@
+<h2>Rule list</h2>
+
+<ul>
+	<li *ngFor="let rule of (rules$ | async)">
+		<a routerLink="/rule/{{ rule.ruleName }}">{{ rule.ruleName }}</a>
+	</li>
+</ul>
