@@ -1,10 +1,13 @@
-<section *ngIf="rule" class="rule">
+<section
+	*ngIf="rule"
+	class="rule"
+	[class.rule--has-fix]="rule.hasFix"
+	[class.rule--typescript-only]="rule.typescriptOnly"
+>
 	<header>
 		<h2 class="rule__name">{{ rule.ruleName }}</h2>
-		<p>
-			<span>{{ rule.hasFix }}</span> <span>{{ rule.typescriptOnly }}</span>
-			<span>{{ rule.type }}</span> <span>{{ rule.provider }}</span>
-		</p>
+		<div class="rule__type">{{ rule.type }}</div>
+		<div class="rule__provider">{{ rule.provider }}</div>
 	</header>
 
 	<p><strong>Description:</strong> {{ rule.description }}</p>
