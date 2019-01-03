@@ -8,7 +8,11 @@
 			"sourceRoot": "projects/explorer/src",
 			"projectType": "application",
 			"prefix": "app",
-			"schematics": {},
+			"schematics": {
+				"@schematics/angular:component": {
+					"styleext": "scss"
+				}
+			},
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
@@ -19,7 +23,7 @@
 						"polyfills": "projects/explorer/src/polyfills.ts",
 						"tsConfig": "projects/explorer/tsconfig.app.json",
 						"assets": ["projects/explorer/src/favicon.ico", "projects/explorer/src/assets"],
-						"styles": ["projects/explorer/src/styles.css"],
+						"styles": ["projects/explorer/src/styles.scss"],
 						"scripts": []
 					},
 					"configurations": {
@@ -73,7 +77,7 @@
 						"polyfills": "projects/explorer/src/polyfills.ts",
 						"tsConfig": "projects/explorer/tsconfig.spec.json",
 						"karmaConfig": "projects/explorer/karma.conf.js",
-						"styles": ["projects/explorer/src/styles.css"],
+						"styles": ["projects/explorer/src/styles.scss"],
 						"scripts": [],
 						"assets": ["projects/explorer/src/favicon.ico", "projects/explorer/src/assets"]
 					}
@@ -85,32 +89,6 @@
 							"projects/explorer/tsconfig.app.json",
 							"projects/explorer/tsconfig.spec.json"
 						],
-						"exclude": ["**/node_modules/**"]
-					}
-				}
-			}
-		},
-		"explorer-e2e": {
-			"root": "projects/explorer-e2e/",
-			"projectType": "application",
-			"prefix": "",
-			"architect": {
-				"e2e": {
-					"builder": "@angular-devkit/build-angular:protractor",
-					"options": {
-						"protractorConfig": "projects/explorer-e2e/protractor.conf.js",
-						"devServerTarget": "explorer:serve"
-					},
-					"configurations": {
-						"production": {
-							"devServerTarget": "explorer:serve:production"
-						}
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": "projects/explorer-e2e/tsconfig.e2e.json",
 						"exclude": ["**/node_modules/**"]
 					}
 				}
