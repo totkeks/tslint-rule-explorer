@@ -1,0 +1,10 @@
+ [build]
+	base = "/"
+	publish = "dist/explorer"
+	command = "npm run netlify"
+
+# Get Angular routing working
+[[redirects]]
+	from = "/*"
+	to = "/index.html"
+	status = 200
