@@ -1,99 +1,116 @@
 {
-	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-	"version": 1,
-	"newProjectRoot": "projects",
-	"projects": {
-		"explorer": {
-			"root": "projects/explorer/",
-			"sourceRoot": "projects/explorer/src",
-			"projectType": "application",
-			"prefix": "app",
-			"schematics": {
-				"@schematics/angular:component": {
-					"styleext": "scss"
-				}
-			},
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
-					"options": {
-						"outputPath": "dist/explorer",
-						"index": "projects/explorer/src/index.html",
-						"main": "projects/explorer/src/main.ts",
-						"polyfills": "projects/explorer/src/polyfills.ts",
-						"tsConfig": "projects/explorer/tsconfig.app.json",
-						"assets": ["projects/explorer/src/favicon.ico", "projects/explorer/src/assets"],
-						"styles": ["projects/explorer/src/styles.scss"],
-						"scripts": []
-					},
-					"configurations": {
-						"production": {
-							"fileReplacements": [
-								{
-									"replace": "projects/explorer/src/environments/environment.ts",
-									"with": "projects/explorer/src/environments/environment.prod.ts"
-								}
-							],
-							"optimization": true,
-							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
-							"namedChunks": false,
-							"aot": true,
-							"extractLicenses": true,
-							"vendorChunk": false,
-							"buildOptimizer": true,
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "2mb",
-									"maximumError": "5mb"
-								}
-							]
-						}
-					}
-				},
-				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "explorer:build"
-					},
-					"configurations": {
-						"production": {
-							"browserTarget": "explorer:build:production"
-						}
-					}
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "explorer:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "projects/explorer/src/test.ts",
-						"polyfills": "projects/explorer/src/polyfills.ts",
-						"tsConfig": "projects/explorer/tsconfig.spec.json",
-						"karmaConfig": "projects/explorer/karma.conf.js",
-						"styles": ["projects/explorer/src/styles.scss"],
-						"scripts": [],
-						"assets": ["projects/explorer/src/favicon.ico", "projects/explorer/src/assets"]
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"projects/explorer/tsconfig.app.json",
-							"projects/explorer/tsconfig.spec.json"
-						],
-						"exclude": ["**/node_modules/**"]
-					}
-				}
-			}
-		}
-	},
-	"defaultProject": "explorer"
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "explorer": {
+      "root": "projects/explorer/",
+      "sourceRoot": "projects/explorer/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/explorer",
+            "index": "projects/explorer/src/index.html",
+            "main": "projects/explorer/src/main.ts",
+            "polyfills": "projects/explorer/src/polyfills.ts",
+            "tsConfig": "projects/explorer/tsconfig.app.json",
+            "assets": [
+              "projects/explorer/src/favicon.ico",
+              "projects/explorer/src/assets"
+            ],
+            "styles": [
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css",
+              "projects/explorer/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@clr/icons/clr-icons.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/explorer/src/environments/environment.ts",
+                  "with": "projects/explorer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "explorer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "explorer:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "explorer:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/explorer/src/test.ts",
+            "polyfills": "projects/explorer/src/polyfills.ts",
+            "tsConfig": "projects/explorer/tsconfig.spec.json",
+            "karmaConfig": "projects/explorer/karma.conf.js",
+            "styles": [
+              "projects/explorer/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/explorer/src/favicon.ico",
+              "projects/explorer/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/explorer/tsconfig.app.json",
+              "projects/explorer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "explorer"
 }

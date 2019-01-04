@@ -7,10 +7,12 @@ import { RulesComponent } from "./components/rules/rules.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { RuleDetailComponent } from "./components/rule-detail/rule-detail.component";
 import { MarkdownPipe } from "./pipes/markdown.pipe";
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [AppComponent, RulesComponent, RuleDetailComponent, MarkdownPipe],
-	imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+	imports: [BrowserModule, HttpClientModule, AppRoutingModule, ClarityModule, BrowserAnimationsModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
