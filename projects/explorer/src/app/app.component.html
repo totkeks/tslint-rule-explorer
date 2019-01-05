@@ -1,3 +1,15 @@
-<h1>TSLint Rule Explorer - T-REX</h1>
-
-<router-outlet></router-outlet>
+<div class="main-container">
+	<header class="header">
+		<div class="branding">
+			<a class="nav-link" [routerLink]="['/']">
+				<span class="title">T-Rex: TSLint Rule Explorer</span></a
+			>
+		</div>
+		<div class="header-nav">
+			<a class="nav-link nav-text" [routerLink]="['rules']" routerLinkActive="active">Rules</a>
+		</div>
+	</header>
+	<div class="content-container">
+		<div class="content-area"><router-outlet></router-outlet></div>
+	</div>
+</div>

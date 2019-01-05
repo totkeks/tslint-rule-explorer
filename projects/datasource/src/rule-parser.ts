@@ -11,6 +11,7 @@ const ruleProviders = [
 	"tslint-consistent-codestyle",
 	"tslint-immutable",
 	"tslint-sonarts",
+	"@totkeks/tslint-rules",
 ];
 const rules: Array<RuleMetadata> = [];
 
@@ -34,6 +35,9 @@ function parseRule(match: string) {
 		return;
 	}
 	metadata.provider = match.split("/")[0];
+
+	// repair metadata - maybe use class initializer instead?
+	metadata.hasFix = metadata.hasFix || false;
 
 	rules.push(metadata);
 }

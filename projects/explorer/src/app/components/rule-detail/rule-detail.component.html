@@ -1,22 +1,46 @@
-<section
-	*ngIf="rule"
-	class="rule"
-	[class.rule--has-fix]="rule.hasFix"
-	[class.rule--typescript-only]="rule.typescriptOnly"
->
-	<header>
-		<h2 class="rule__name">{{ rule.ruleName }}</h2>
-		<div class="rule__type">{{ rule.type }}</div>
-		<div class="rule__provider">{{ rule.provider }}</div>
-	</header>
-
-	<p><strong>Description:</strong> {{ rule.description }}</p>
-
-	<p><strong>Rationale:</strong> {{ rule.rationale }}</p>
-
-	<p>{{ rule.optionsDescription }}</p>
-	<p>{{ rule.options }}</p>
-	<p>{{ rule.optionExamples }}</p>
-
-	<footer><button (click)="goBack()">Go back</button></footer>
-</section>
+<div class="clr-row clr-justify-content-center">
+	<div class="clr-col-6">
+		<section class="card" *ngIf="rule">
+			<div class="card-header">
+				<strong>Rule: </strong>{{ rule.ruleName }}
+				<div class="float-right">
+					<span class="label label-info">{{ rule.type }}</span>
+					<span class="label label-success">TypeScript</span>
+					<span class="label label-success" *ngIf="!rule.typescriptOnly">JavaScript</span
+					><span class="label label-danger" *ngIf="rule.typescriptOnly">No JavaScript</span
+					><span class="label label-success" *ngIf="rule.hasFix">Has Fixer</span>
+					<span class="label label-danger" *ngIf="!rule.hasFix">No Fixer</span>
+				</div>
+			</div>
+			<div class="card-block">
+				<div class="card-title">Description</div>
+				<div class="card-text" [innerHTML]="rule.description | md"></div>
+			</div>
+			<div class="card-block" *ngIf="rule.rationale">
+				<div class="card-title">Rationale</div>
+				<div class="card-text" [innerHTML]="rule.rationale | md"></div>
+			</div>
+			<div class="card-block" *ngIf="rule.optionsDescription">
+				<div class="card-title">Options description</div>
+				<div class="card-text" [innerHTML]="rule.optionsDescription | md"></div>
+			</div>
+			<div class="card-block" *ngIf="rule.optionExamples">
+				<div class="card-title">Option examples</div>
+				<div class="card-text">
+					<pre><code highlight class="json">{{ rule.optionExamples | json }}</code></pre>
+				</div>
+			</div>
+			<div class="card-block" *ngIf="rule.options">
+				<div class="card-title">Options schema</div>
+				<div class="card-text">
+					<pre><code highlight class="json">{{ rule.options | json }}</code></pre>
+				</div>
+			</div>
+			<div class="card-footer">
+				<button class="btn btn-sm btn-link" (click)="goBack()">🡰 Go back</button>
+				<a href="https://www.npmjs.com/package/{{ rule.provider }}">npm</a>
+				<a href="https://www.github.com">GitHub</a>
+			</div>
+		</section>
+	</div>
+</div>

@@ -1,9 +1,41 @@
-<section>
-	<h2>Rule list ({{ (rules$ | async)?.length }} rules)</h2>
+<div class="clr-row clr-justify-content-center">
+	<div class="clr-col-6">
+		<h2>Rule list ({{ (rules$ | async)?.length }} rules)</h2>
+		<clr-datagrid>
+			<clr-dg-column [clrDgField]="'ruleName'" [clrDgSortOrder]="sortOrder.ASC"
+				>Rule name</clr-dg-column
+			>
+			<clr-dg-column [clrDgField]="'provider'">Package</clr-dg-column>
+			<clr-dg-column [clrDgField]="'typescriptOnly'">JS</clr-dg-column>
+			<clr-dg-column [clrDgField]="'hasFix'">Fixer</clr-dg-column>
 
-	<ul>
-		<li *ngFor="let rule of (rules$ | async)">
-			<a routerLink="/rule/{{ rule.ruleName }}">{{ rule.ruleName }}</a>
-		</li>
-	</ul>
-</section>
+			<clr-dg-row
+				*clrDgItems="let rule of (rules$ | async)"
+				[routerLink]="['/rule', rule.ruleName]"
+			>
+				<clr-dg-cell>{{ rule.ruleName }}</clr-dg-cell>
+				<clr-dg-cell>{{ rule.provider }}</clr-dg-cell>
+				<clr-dg-cell class="text-center"
+					><clr-icon
+						*ngIf="rule.typescriptOnly"
+						shape="times-circle"
+						class="is-solid is-error"
+					></clr-icon
+					><clr-icon
+						*ngIf="!rule.typescriptOnly"
+						shape="success-standard"
+						class="is-solid is-success"
+					></clr-icon
+				></clr-dg-cell>
+				<clr-dg-cell class="text-center"
+					><clr-icon *ngIf="!rule.hasFix" shape="times-circle" class="is-solid is-error"></clr-icon
+					><clr-icon
+						*ngIf="rule.hasFix"
+						shape="success-standard"
+						class="is-solid is-success"
+					></clr-icon
+				></clr-dg-cell>
+			</clr-dg-row>
+		</clr-datagrid>
+	</div>
+</div>
