@@ -18,10 +18,10 @@ const rules: Array<RuleMetadata> = [];
 ruleProviders.forEach(provider =>
 	glob
 		.sync(`${provider}/**/*Rule.js`, { cwd: "node_modules" })
-		.forEach(matches => parseRule(matches))
+		.forEach(matches => parseRule(matches, provider))
 );
 
-function parseRule(match: string) {
+function parseRule(match: string, provider: string) {
 	const rule = require(match).Rule;
 
 	if (rule === undefined) {
@@ -34,9 +34,9 @@ function parseRule(match: string) {
 		console.warn(`no metadata for rule in ${match}`);
 		return;
 	}
-	metadata.provider = match.split("/")[0];
+	metadata.provider = provider;
 
-	// repair metadata - maybe use class initializer instead?
+	// repair metadata - TODO: maybe use class initializer instead?
 	metadata.hasFix = metadata.hasFix || false;
 
 	rules.push(metadata);
