@@ -1,13 +1,16 @@
 export interface RuleMetadata {
 	ruleName: string;
-	description: string;
-	rationale: string;
-	optionsDescription: string;
-	options: any; // json schema
-	optionExamples: Array<any>;
-	type: string;
-	typescriptOnly: boolean;
-	hasFix: boolean;
+	description?: string; // can be markdown
+	rationale?: string; // can be markdown
+	optionsDescription?: string; // can be markdown
+	options?: any; // json schema
+	optionExamples?: Array<any>;
+	type?: string;
+	typescriptOnly?: boolean;
+	hasFix?: boolean;
 
-	provider: string;
+	provider?: string;
+	metadataMissing?: boolean;
+	gitUrl?: string;
+	gitHost?: string;
 }

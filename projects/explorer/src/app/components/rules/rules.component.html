@@ -8,6 +8,7 @@
 			<clr-dg-column [clrDgField]="'provider'">Package</clr-dg-column>
 			<clr-dg-column [clrDgField]="'typescriptOnly'">JS</clr-dg-column>
 			<clr-dg-column [clrDgField]="'hasFix'">Fixer</clr-dg-column>
+			<clr-dg-column [clrDgField]="'metadataMissing'">Metadata</clr-dg-column>
 
 			<clr-dg-row
 				*clrDgItems="let rule of (rules$ | async)"
@@ -17,20 +18,46 @@
 				<clr-dg-cell>{{ rule.provider }}</clr-dg-cell>
 				<clr-dg-cell class="text-center"
 					><clr-icon
-						*ngIf="rule.typescriptOnly"
+						*ngIf="rule.typescriptOnly === true"
 						shape="times-circle"
 						class="is-solid is-error"
 					></clr-icon
 					><clr-icon
-						*ngIf="!rule.typescriptOnly"
+						*ngIf="rule.typescriptOnly === false"
 						shape="success-standard"
 						class="is-solid is-success"
 					></clr-icon
+					><clr-icon
+						*ngIf="rule.typescriptOnly === undefined"
+						shape="help"
+						class="is-solid is-warning"
+					></clr-icon
 				></clr-dg-cell>
 				<clr-dg-cell class="text-center"
-					><clr-icon *ngIf="!rule.hasFix" shape="times-circle" class="is-solid is-error"></clr-icon
 					><clr-icon
-						*ngIf="rule.hasFix"
+						*ngIf="rule.hasFix === false"
+						shape="times-circle"
+						class="is-solid is-error"
+					></clr-icon
+					><clr-icon
+						*ngIf="rule.hasFix === true"
+						shape="success-standard"
+						class="is-solid is-success"
+					></clr-icon
+					><clr-icon
+						*ngIf="rule.hasFix === undefined"
+						shape="help"
+						class="is-solid is-warning"
+					></clr-icon
+				></clr-dg-cell>
+				<clr-dg-cell class="text-center"
+					><clr-icon
+						*ngIf="rule.metadataMissing"
+						shape="times-circle"
+						class="is-solid is-error"
+					></clr-icon
+					><clr-icon
+						*ngIf="!rule.metadataMissing"
 						shape="success-standard"
 						class="is-solid is-success"
 					></clr-icon

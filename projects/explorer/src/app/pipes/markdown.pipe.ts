@@ -6,7 +6,7 @@ import * as marked from "marked";
 })
 export class MarkdownPipe implements PipeTransform {
 	public transform(markdown: string): string {
-		if (markdown === null) {
+		if (markdown === undefined) {
 			return "";
 		}
 

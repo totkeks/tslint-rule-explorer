@@ -3,17 +3,19 @@
 		<section class="card" *ngIf="rule">
 			<div class="card-header">
 				<strong>Rule: </strong>{{ rule.ruleName }}
-				<div class="float-right">
+				<div *ngIf="!rule.metadataMissing" class="float-right">
 					<span class="label label-info">{{ rule.type }}</span>
-					<span class="label label-success">TypeScript</span>
 					<span class="label label-success" *ngIf="!rule.typescriptOnly">JavaScript</span
 					><span class="label label-danger" *ngIf="rule.typescriptOnly">No JavaScript</span
 					><span class="label label-success" *ngIf="rule.hasFix">Has Fixer</span>
 					<span class="label label-danger" *ngIf="!rule.hasFix">No Fixer</span>
 				</div>
+				<div *ngIf="rule.metadataMissing" class="float-right">
+					<span class="label label-danger" *ngIf="rule.metadataMissing">No metadata</span>
+				</div>
 			</div>
 			<div class="card-block">
-				<div class="card-title">Description</div>
+				<div class="card-title" *ngIf="rule.description">Description</div>
 				<div class="card-text" [innerHTML]="rule.description | md"></div>
 			</div>
 			<div class="card-block" *ngIf="rule.rationale">
@@ -41,6 +43,9 @@
 				<a href="https://www.npmjs.com/package/{{ rule.provider }}"
 					><img class="npm-logo" src="/assets/npm.svg"
 				/></a>
+				<a href="{{ rule.gitUrl }}"
+					><img class="git-logo" src="/assets/git.svg" />{{ rule.gitHost }}</a
+				>
 			</div>
 		</section>
 	</div>
